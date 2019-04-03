@@ -1,0 +1,15 @@
+stages:
+  - test
+  
+variables:
+  GIT_STRATEGY: "clone"
+  GRADLE_LOG_OPT: "-Dorg.gradle.logging.level=info"
+  
+test:linux:
+  stage: test
+  tags:
+    - nerv-aws-docker-linux
+  only:
+    - branches
+  script:
+    - ./gradlew -i clean build test
